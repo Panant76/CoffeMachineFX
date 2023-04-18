@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="434.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <HBox alignment="CENTER" cacheShape="false" centerShape="false" focusTraversable="true"
+          nodeOrientation="LEFT_TO_RIGHT" prefHeight="214.0" prefWidth="111.0" scaleShape="false">
+        <ProgressBar fx:id="pgCoffee" maxHeight="15.0" maxWidth="174.0" minHeight="0.0" minWidth="150.0"
+                     onMouseClicked="#pgCoffeeCl" prefHeight="0.0" prefWidth="174.0" progress="1.0" rotate="-90.0">
+           <HBox.margin>
+               <Insets top="20.0"/>
+           </HBox.margin>
+        </ProgressBar>
+        <ProgressBar fx:id="pgMilk" layoutX="50.0" maxHeight="15.0" maxWidth="150.0" minHeight="15.0" minWidth="150.0"
+                     onMouseClicked="#pgMilkCl" prefHeight="15.0" prefWidth="150.0" progress="1.0" rotate="-90.0">
+           <HBox.margin>
+               <Insets top="20.0"/>
+           </HBox.margin>
+        </ProgressBar>
+        <ProgressBar fx:id="pgWater" layoutX="100.0" maxHeight="15.0" maxWidth="150.0" minHeight="15.0" minWidth="150.0"
+                     onMouseClicked="#pgWaterCl" prefHeight="15.0" prefWidth="150.0" progress="1.0" rotate="-90.0">
+           <HBox.margin>
+               <Insets top="20.0"/>
+           </HBox.margin>
+        </ProgressBar>
+        <ProgressBar fx:id="pgGarbage" layoutX="150.0" maxHeight="15.0" maxWidth="150.0" minHeight="15.0"
+                     minWidth="150.0" onMouseClicked="#pgGarbageCl" prefHeight="15.0" prefWidth="150.0" progress="0.0"
+                     rotate="-90.0">
+           <HBox.margin>
+               <Insets top="20.0"/>
+           </HBox.margin>
+        </ProgressBar>
+    </HBox>
+    <TextField fx:id="display" />
+    <Button onAction="#onBlackCoffeeButtonClick" text="Black Coffee" />
+    <Button onAction="#onCapuchinoButtonClick" text="Capuchino" />
+    <Button onAction="#onHotMilkButtonClick" text="Hot Milk" />
+
+</VBox>
