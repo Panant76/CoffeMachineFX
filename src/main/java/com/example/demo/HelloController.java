@@ -4,12 +4,10 @@ import com.example.demo.entity.drink.BlackCoffee;
 import com.example.demo.entity.drink.Capuchino;
 import com.example.demo.entity.drink.Drink;
 import com.example.demo.entity.drink.HotMilk;
-import com.example.demo.entity.enums.Container;
 import com.example.demo.exception.ContainerIsEmptyException;
 import com.example.demo.exception.ContainerIsFullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import static com.example.demo.entity.enums.Container.*;
 
 public class HelloController {
-    Container container;
+
     private static final String DRINK_READY_MESSAGE = "Ваш напиток готов";
     private static final String WELCOME_MESSAGE = "Привет! Выберите напиток";
     @FXML
@@ -28,19 +26,20 @@ public class HelloController {
     ProgressBar pgWater;
     @FXML
     ProgressBar pgGarbage;
-    void changeProgressBar(){
-        pgCoffee.setProgress(Double.valueOf(COFFEE.getCurrentState())/Double.valueOf(COFFEE.getCapacity()));
-        pgMilk.setProgress(Double.valueOf(MILK.getCurrentState())/Double.valueOf(MILK.getCapacity()));
-        pgWater.setProgress(Double.valueOf(WATER.getCurrentState())/Double.valueOf(WATER.getCapacity()));
-        pgGarbage.setProgress(Double.valueOf(GARBAGE.getCurrentState())/Double.valueOf(GARBAGE.getCapacity()));
-    }
+
     @FXML
     TextField display;
+
+    void changeProgressBar() {
+        pgCoffee.setProgress((double) COFFEE.getCurrentState() / (double) COFFEE.getCapacity());
+        pgMilk.setProgress((double) MILK.getCurrentState() / (double) MILK.getCapacity());
+        pgWater.setProgress((double) WATER.getCurrentState() / (double) WATER.getCapacity());
+        pgGarbage.setProgress((double) GARBAGE.getCurrentState() / (double) GARBAGE.getCapacity());
+    }
 
     @FXML
     protected void onHotMilkButtonClick() {
         createHotMilk();
-
     }
 
 
@@ -49,7 +48,7 @@ public class HelloController {
         try {
             hotMilk.make(this);
             changeProgressBar();
-            display.setText(DRINK_READY_MESSAGE+MILK.getCurrentState());
+            display.setText(DRINK_READY_MESSAGE);
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
         }
@@ -72,7 +71,6 @@ public class HelloController {
             coffee.make(this);
             changeProgressBar();
             display.setText(DRINK_READY_MESSAGE);
-            //System.out.println(Double.valueOf(WATER.getCurrentState()/WATER.getCapacity()));
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
         }
@@ -80,8 +78,7 @@ public class HelloController {
 
     @FXML
     protected void onBlackCoffeeButtonClick(ActionEvent actionEvent) {
-       createCoffee();
-
+        createCoffee();
     }
 
     @FXML

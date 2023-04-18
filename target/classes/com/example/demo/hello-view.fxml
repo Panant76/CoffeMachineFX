@@ -37,8 +37,8 @@
         </ProgressBar>
     </HBox>
     <TextField fx:id="display" />
-    <Button onAction="#onBlackCoffeeButtonClick" text="Black Coffee" />
-    <Button onAction="#onCapuchinoButtonClick" text="Capuchino" />
-    <Button onAction="#onHotMilkButtonClick" text="Hot Milk" />
+    <Button fx:id="Coffee" onAction="#onBlackCoffeeButtonClick" text="Black Coffee" />
+    <Button fx:id="Capuchino" onAction="#onCapuchinoButtonClick" text="Capuchino" />
+    <Button fx:id="Milk" onAction="#onHotMilkButtonClick" text="Hot Milk" />
 
 </VBox>
