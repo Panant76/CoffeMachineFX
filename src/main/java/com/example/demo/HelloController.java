@@ -29,10 +29,10 @@ public class HelloController {
     @FXML
     ProgressBar pgGarbage;
     void changeProgressBar(){
-        pgCoffee.setProgress(COFFEE.getCurrentState()/COFFEE.getCapacity());
-        pgMilk.setProgress(MILK.getCurrentState()/MILK.getCapacity());
-        pgWater.setProgress(WATER.getCurrentState()/WATER.getCapacity());
-        pgGarbage.setProgress(GARBAGE.getCurrentState()/GARBAGE.getCapacity());
+        pgCoffee.setProgress(Double.valueOf(COFFEE.getCurrentState())/Double.valueOf(COFFEE.getCapacity()));
+        pgMilk.setProgress(Double.valueOf(MILK.getCurrentState())/Double.valueOf(MILK.getCapacity()));
+        pgWater.setProgress(Double.valueOf(WATER.getCurrentState())/Double.valueOf(WATER.getCapacity()));
+        pgGarbage.setProgress(Double.valueOf(GARBAGE.getCurrentState())/Double.valueOf(GARBAGE.getCapacity()));
     }
     @FXML
     TextField display;
@@ -71,7 +71,8 @@ public class HelloController {
         try {
             coffee.make(this);
             changeProgressBar();
-            display.setText((DRINK_READY_MESSAGE) + (WATER.getCapacity()));
+            display.setText(DRINK_READY_MESSAGE);
+            //System.out.println(Double.valueOf(WATER.getCurrentState()/WATER.getCapacity()));
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
         }
@@ -79,7 +80,8 @@ public class HelloController {
 
     @FXML
     protected void onBlackCoffeeButtonClick(ActionEvent actionEvent) {
-        createCoffee();
+       createCoffee();
+
     }
 
     @FXML

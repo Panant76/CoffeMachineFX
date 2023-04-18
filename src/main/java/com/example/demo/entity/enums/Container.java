@@ -17,54 +17,51 @@ public enum Container {
                 throw new ContainerIsFullException();
             }
             this.setCurrentState(this.getCurrentState() + 1);
-
         }
-
         @Override
         public void reset() {
             this.setCurrentState(0);
         }
     },
-    COFFEE(10, "Контейнер для кофе", 0) {
+    COFFEE(10, "Контейнер для кофе", 10) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCapacity() < drink.getCoffee()) {
+            if (this.getCurrentState() < drink.getCoffee() && this.getCurrentState()==0) {
                 throw new ContainerIsEmptyException(this.getName());
             }
-            this.setCurrentState(this.getCapacity() - drink.getCoffee());
-
+            this.setCurrentState(this.getCurrentState() - drink.getCoffee());
         }
 
         @Override
         public void reset() {
-            this.setCapacity(10);
+            this.setCurrentState(10);
         }
     },
-    MILK(3, "Контейнер для молока", 0) {
+    MILK(3, "Контейнер для молока", 3) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCapacity() < drink.getMilk()) {
+            if (this.getCurrentState()< drink.getMilk()) {
                 throw new ContainerIsEmptyException(this.getName());
             }
-            this.setCurrentState(this.getCapacity() - drink.getMilk());
+            this.setCurrentState(this.getCurrentState()- drink.getMilk());
 
         }
 
         @Override
         public void reset() {
-            this.setCapacity(3);
+            this.setCurrentState(3);
         }
     },
-    WATER(6, "Контейнер для воды", 0) {
+    WATER(6, "Контейнер для воды", 6) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCapacity() < drink.getWater()) {
+            if (this.getCurrentState() < drink.getWater() && this.getCurrentState()==0) {
                 throw new ContainerIsEmptyException(this.getName());
             }
-            this.setCurrentState(this.getCapacity() - drink.getWater());
+            this.setCurrentState(this.getCurrentState() - drink.getWater());
 
         }
 
         @Override
         public void reset() {
-            this.setCapacity(6);
+            this.setCurrentState(6);
         }
     };
 
