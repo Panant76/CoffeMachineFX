@@ -8,9 +8,12 @@ import com.example.demo.exception.ContainerIsEmptyException;
 import com.example.demo.exception.ContainerIsFullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+
+import java.util.stream.Stream;
 
 import static com.example.demo.entity.enums.Container.*;
 
@@ -18,6 +21,12 @@ public class HelloController {
 
     private static final String DRINK_READY_MESSAGE = "Ваш напиток готов";
     private static final String WELCOME_MESSAGE = "Привет! Выберите напиток";
+    @FXML
+    Button mk;
+    @FXML
+    Button cf;
+    @FXML
+    Button cp;
     @FXML
     ProgressBar pgMilk;
     @FXML
@@ -51,6 +60,9 @@ public class HelloController {
             display.setText(DRINK_READY_MESSAGE);
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
+            cp.setDisable(true);
+            mk.setDisable(true);
+
         }
     }
 
@@ -62,6 +74,8 @@ public class HelloController {
             display.setText(DRINK_READY_MESSAGE);
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
+            cf.setDisable(true);
+            cp.setDisable(true);
         }
     }
 
@@ -73,6 +87,8 @@ public class HelloController {
             display.setText(DRINK_READY_MESSAGE);
         } catch (ContainerIsEmptyException | ContainerIsFullException e) {
             display.setText(e.getMessage());
+            cf.setDisable(true);
+            cp.setDisable(true);
         }
     }
 
@@ -91,27 +107,29 @@ public class HelloController {
     public void pgCoffeeCl(MouseEvent mouseEvent) {
         COFFEE.reset();
         changeProgressBar();
-        display.setText(WELCOME_MESSAGE);
+        cf.setDisable(false);
+        cp.setDisable(false);
+        // display.setText(WELCOME_MESSAGE);
     }
 
     @FXML
     public void pgGarbageCl(MouseEvent mouseEvent) {
         GARBAGE.reset();
         changeProgressBar();
-        display.setText(WELCOME_MESSAGE);
+        //display.setText(WELCOME_MESSAGE);
     }
 
     @FXML
     public void pgWaterCl(MouseEvent mouseEvent) {
         WATER.reset();
         changeProgressBar();
-        display.setText(WELCOME_MESSAGE);
+        // display.setText(WELCOME_MESSAGE);
     }
 
     @FXML
     public void pgMilkCl(MouseEvent mouseEvent) {
         MILK.reset();
         changeProgressBar();
-        display.setText(WELCOME_MESSAGE);
+        // display.setText(WELCOME_MESSAGE);
     }
 }

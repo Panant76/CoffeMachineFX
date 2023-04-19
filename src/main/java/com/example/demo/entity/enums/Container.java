@@ -5,7 +5,7 @@ import com.example.demo.entity.drink.Drink;
 import com.example.demo.exception.ContainerIsEmptyException;
 import com.example.demo.exception.ContainerIsFullException;
 import javafx.fxml.FXML;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Button;
 
 public enum Container {
 
@@ -18,14 +18,15 @@ public enum Container {
             }
             this.setCurrentState(this.getCurrentState() + 1);
         }
+
         @Override
         public void reset() {
             this.setCurrentState(0);
         }
     },
-    COFFEE(10, "Контейнер для кофе", 10) {
+    COFFEE(10, "Контейнер для кофе", 0) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCurrentState() < drink.getCoffee() && this.getCurrentState()==0) {
+            if (this.getCurrentState() < drink.getCoffee() && this.getCurrentState() == 0) {
                 throw new ContainerIsEmptyException(this.getName());
             }
             this.setCurrentState(this.getCurrentState() - drink.getCoffee());
@@ -33,35 +34,34 @@ public enum Container {
 
         @Override
         public void reset() {
-            this.setCurrentState(10);
+            this.setCurrentState(this.getCapacity());
         }
     },
-    MILK(3, "Контейнер для молока", 3) {
+    MILK(3, "Контейнер для молока", 0) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCurrentState()< drink.getMilk()) {
+            if (this.getCurrentState() < drink.getMilk()) {
                 throw new ContainerIsEmptyException(this.getName());
             }
-            this.setCurrentState(this.getCurrentState()- drink.getMilk());
+            this.setCurrentState(this.getCurrentState() - drink.getMilk());
 
         }
 
         @Override
         public void reset() {
-            this.setCurrentState(3);
+            this.setCurrentState(this.getCapacity());
         }
     },
-    WATER(6, "Контейнер для воды", 6) {
+    WATER(6, "Контейнер для воды", 0) {
         public void changeCapacity(Drink drink) throws ContainerIsEmptyException {
-            if (this.getCurrentState() < drink.getWater() && this.getCurrentState()==0) {
+            if (this.getCurrentState() < drink.getWater() && this.getCurrentState() == 0) {
                 throw new ContainerIsEmptyException(this.getName());
             }
             this.setCurrentState(this.getCurrentState() - drink.getWater());
-
         }
 
         @Override
         public void reset() {
-            this.setCurrentState(6);
+            this.setCurrentState(this.getCapacity());
         }
     };
 
